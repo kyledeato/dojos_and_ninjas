@@ -20,13 +20,16 @@ def ninja():
 # ACTION ROUTE--------
 @app.route('/ninjas/create', methods=['POST'])
 def create_ninja():
-    # data = {
-    #     "first_name": request.form("first_name"),
-    #     "last_name" : request.form("last_name"),
-    #     "age": request.form("age"),
-    #     "dojo_id": request.form("dojo_id")
-    # }
-    Ninja.save_ninja(request.form)
-    return redirect(url_for(""))
+    data = {
+        "first_name": request.form["first_name"],
+        "last_name" : request.form["last_name"],
+        "age": request.form["age"],
+        "dojo_id": request.form["dojo_id"]
+    }
+    Ninja.save_ninja(data)
+    #use dojo_id for url
+    dojo_id = request.form["dojo_id"]
+    return redirect(f'/dojos/{dojo_id}')
 
+# how to get data
 # how to redirect to /dojos/<int:id> with values
